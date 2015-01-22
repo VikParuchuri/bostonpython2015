@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Algorithmic art</title>
+    <link href="css/reset.css" rel="stylesheet" />
+    <meta name="author" content="Vik Paruchuri">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="css/favicon.png" />
+    <link rel="apple-touch-icon" href="css/apple-touch-icon.png" />
+    <!-- Code Prettifier: -->
+<link href="css/highlight.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <link href="css/style.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,800italic,300,400,800' rel='stylesheet' type='text/css'>    
+
+
+  </head>
+
+  <body>
+  <div class="fallback-message">
+  <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+  <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+  </div>
+    <div id="impress">
+    <div class='step' >
+    
+<h1>Art and algorithms</h1>
+
+<h2>Vik Paruchuri</h2>
+
+<h2>DataQuest (<a href="http://www.dataquest.io">www.dataquest.io</a>)</h2>
+
+<h2><a href="mailto:vik.paruchuri@gmail.com">vik.paruchuri@gmail.com</a></h2>
+</div>
+      <div class='step' >
+    
+<h1>The highest form of art</h1>
+
+<p><img src="images/low_art.gif" alt="chcomic"></p>
+</div>
+      <div class='step' >
+    
+<h1>Initial goal</h1>
+
+<h2>Wanted to make algorithmic comic strips</h2>
+
+<h2>Take existing comic, &quot;remix&quot; to new comics</h2>
+
+<h2>Calvin and Hobbes clearly the best</h2>
+
+<h2>Spoiler: didn&#39;t quite get that far</h2>
+</div>
+      <div class='step' >
+    
+<h1>First step</h1>
+
+<h2>Use image recognition</h2>
+
+<h2>Calvin and Hobbes are interesting</h2>
+
+<h2>Need to make algorithm to extract</h2>
+</div>
+      <div class='step' >
+    
+<h1>Scrape the data</h1>
+
+<h2>Scrapy is awesome!</h2>
+
+<h2>Download archives</h2>
+
+<h2>Rename to reflect dates</h2>
+</div>
+      <div class='step' >
+    
+<h1>Sunday comics</h1>
+
+<p><img src="images/19880327.jpg" alt="chcomic"></p>
+</div>
+      <div class='step' >
+    
+<h1>Color is good, usually</h1>
+
+<h2>Remove strips with color</h2>
+
+<h2>Slice strips up into pieces</h2>
+</div>
+      <div class='step' >
+    
+<h1>The results</h1>
+
+<h2>Lots of these:</h2>
+
+<p><img src="images/19930503_s0.jpg" alt="chcomic"></p>
+</div>
+      <div class='step' >
+    
+<h1>Make program to crop</h1>
+
+<h2>Get lots of training data</h2>
+
+<p><img src="images/crop.png" alt="chcomic"></p>
+</div>
+      <div class='step' >
+    
+<h1>Pixels</h1>
+
+<h2>Images are made up of pixels</h2>
+
+<h2>100 x 100 image has 10,000</h2>
+</div>
+      <div class='step' >
+    
+<h1>Image as a matrix</h1>
+
+<h2>Can think of an image as a matrix</h2>
+
+<h2>Each &quot;cell&quot; has the intensity at the pixel</h2>
+</div>
+      <div class='step' >
+    
+<h1>Grayscale vs RGB</h1>
+
+<h2>Each cell has R, G, and B intensities</h2>
+
+<h2>Average all three to get one number (grayscale)</h2>
+</div>
+      <div class='step' >
+    
+<h1>Look at RGB</h1>
+<pre><code class='prettyprint '>array([[[255, 255, 255],
+    [249, 249, 249],
+    [251, 251, 251],
+    [240, 240, 240]],
+
+   [[251, 251, 251],
+    [255, 255, 255],
+    [239, 239, 239],
+    [255, 255, 255]],
+
+   [[243, 243, 243],
+    [244, 244, 244],
+    [255, 255, 255],
+    [250, 250, 250]],
+
+   [[255, 255, 255],
+    [255, 255, 255],
+    [248, 248, 248],
+    [255, 255, 255]]], dtype=uint8)
+</code></pre></div>
+      <div class='step' >
+    
+<h1>Use openCV</h1>
+
+<h2>Haar cascade features</h2>
+
+<p><img src="images/haar.png" alt="haar"></p>
+</div>
+      <div class='step' >
+    
+<h1>openCV train</h1>
+
+<h2><a href="https://github.com/mrnugget/opencv-haar-classifier-training">https://github.com/mrnugget/opencv-haar-classifier-training</a></h2>
+
+<h2>This repo is a big help when training with openCV</h2>
+</div>
+      <div class='step' >
+    
+<h1>Results not so good</h1>
+
+<h2>Probably due to varied image sizes</h2>
+</div>
+      <div class='step' >
+    
+<h1>Next: Own algorithm</h1>
+
+<h2>2d image to 1d vector</h2>
+
+<h2>Features: Local binary patterns</h2>
+
+<p><img src="images/lbp.png" alt="lbp"></p>
+</div>
+      <div class='step' >
+    
+<h1>Training</h1>
+
+<h2>Use random forest classifier (sklearn)</h2>
+
+<h2>Separate models for calvin and hobbes</h2>
+</div>
+      <div class='step' >
+    
+<h1>Results</h1>
+
+<h2>Slice up images</h2>
+
+<h2>Separate predictions for each slice</h2>
+
+<h2>Pretty good results</h2>
+
+<p><img src="images/classify_good.jpg" alt="classify">
+<img src="images/classify_good2.jpg" alt="classify"></p>
+</div>
+      <div class='step' >
+    
+<h1>Other approaches</h1>
+
+<h2>Also tried a KNN-based solution, but not as good</h2>
+</div>
+      <div class='step' >
+    
+<h2>Calvin appearances</h2>
+
+<p><img src="images/cal_years.png" alt="cal_charts"></p>
+</div>
+      <div class='step' >
+    
+<h2>Hobbes appearances</h2>
+
+<p><img src="images/hob_years.png" alt="hobbes"></p>
+</div>
+      <div class='step' >
+    
+<h1>Bonus!</h1>
+
+<h2>Decided to look into deep learning</h2>
+
+<h2>CNNs are good for this</h2>
+
+<p><img src="images/cnn.png" alt="cnn"></p>
+</div>
+      <div class='step' >
+    
+<h1>C+H on learning</h1>
+
+<p><img src="images/calvin_deep_learning.jpg" alt="calvin"></p>
+</div>
+      <div class='step' >
+    
+<h1>Use pylearn2</h1>
+
+<h2>Documentation is sparse</h2>
+
+<h2>Define models in yaml</h2>
+<pre><code class='prettyprint '>!obj:pylearn2.train.Train {
+dataset: &train !obj:conv_dataset.CHImages {
+    which_set: 'calvin',
+    start: 0,
+    stop: %(train_stop)i,
+    one_hot: True
+},
+model: !obj:pylearn2.models.mlp.MLP {
+    batch_size: %(batch_size)i,
+    input_space: !obj:pylearn2.space.Conv2DSpace {
+        shape: &window_shape [48, 48],
+        num_channels: 3
+    },
+</code></pre></div>
+      <div class='step' >
+    
+<h1>CNN</h1>
+
+<h2>Feed in images with calvin, and images without</h2>
+
+<h2>Learn a neural network</h2>
+
+<h2>Add a final layer to output predicted classification</h2>
+</div>
+      <div class='step' >
+    
+<h1>Results</h1>
+
+<h2>Pretty good!  Only 18% misclassified</h2>
+
+<h2>Can&#39;t easily find a &quot;box&quot; for calvin, though</h2>
+</div>
+      <div class='step' >
+    
+<h1>And, I did generate some art!</h1>
+
+<h2>Use markov chains to learn pixel intensity sequences</h2>
+
+<p><img src="https://vik-affirm-assets.s3-us-west-1.amazonaws.com/making-instrumental-music-from-scratch/markov-chain.png" alt="Markov chain"></p>
+</div>
+      <div class='step' >
+    
+<h1>Results</h1>
+
+<h2>Construct image from left to right</h2>
+
+<h2>Make chains for left, top (and spaced out variations)</h2>
+
+<p><img src="images/gen_1.jpg" alt="gen image"></p>
+</div>
+      <div class='step' >
+    
+<h1>Ways to improve detection</h1>
+
+<h2>Spend more time on tuning CNNs</h2>
+
+<h2>Do preprocessing on images (normalize intensity, etc)</h2>
+
+<h2>Augment training data with rotations</h2>
+</div>
+      <div class='step' >
+    
+<h1>Ways to build out art generation</h1>
+
+<h2>Learn SVG paths, not single pixels</h2>
+
+<h2>Hand label generated art</h2>
+
+<h2>Genetic algo?</h2>
+
+<h2>Use something like nodebox to sketch</h2>
+</div>
+      <div class='step' >
+    
+<h2>Want to learn about data science?  Check out <a href="http://www.dataquest.io">www.dataquest.io</a>!</h2>
+
+<p><img src="images/dataquest.png" alt="dataquest"></p>
+
+<h3>This presentation available at: <a href="https://github.com/VikParuchuri/bostonpython2015">https://github.com/VikParuchuri/bostonpython2015</a></h3>
+
+      </div>
+    <script src="js/impress.js"></script>
+    <script>impress().init();</script>
+  </body>
+</html>
+    
